@@ -2,26 +2,29 @@ package xyz.arifz.materialedittext
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.text.Editable
-import android.text.InputFilter
-import android.text.InputType
-import android.text.TextWatcher
+import android.graphics.Color
+import android.graphics.fonts.FontFamily
+import android.text.*
+import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import xyz.arifz.materialedittext.ExtensionFunctions.dpToPx
+import xyz.arifz.materialedittext.ExtensionFunctions.spToPx
 
 class MaterialEditText : TextInputLayout {
+    private lateinit var textInputEditText: TextInputEditText
+    private var hintForColor = ""
+    private var isRequired = false
 
     init {
         setTheme()
     }
-
-    private lateinit var textInputEditText: TextInputEditText
 
     constructor(context: Context) : super(context) {
         init(context, null, R.style.TextInputLayoutStyle)
@@ -66,12 +69,10 @@ class MaterialEditText : TextInputLayout {
 
     private fun setupView(context: Context) {
         textInputEditText = TextInputEditText(context)
-
         textInputEditText.layoutParams = LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
-
         textInputEditText.background = null
         textInputEditText.setLines(1)
         textInputEditText.maxLines = 1
@@ -86,13 +87,18 @@ class MaterialEditText : TextInputLayout {
             val a = context.obtainStyledAttributes(attrs, R.styleable.MaterialEditText)
             try {
                 var hint = a.getString(R.styleable.MaterialEditText_hint)
-                val isRequired = a.getBoolean(R.styleable.MaterialEditText_isRequired, false)
+                isRequired = a.getBoolean(R.styleable.MaterialEditText_isRequired, false)
                 if (isRequired) {
                     if (hint.isNullOrEmpty())
                         hint = ""
                     hint += " *"
-                    this.hint = hint
-                } else this.hint = hint
+                    hintForColor = hint
+                    setHintAsteriskColor(Color.RED)
+
+                } else {
+                    hintForColor = hint ?: ""
+                    setHint(hint)
+                }
 
                 val isReadOnly = a.getBoolean(R.styleable.MaterialEditText_isReadOnly, false)
                 setReadOnly(isReadOnly)
@@ -102,6 +108,7 @@ class MaterialEditText : TextInputLayout {
                 setEditTextType(a.getInt(R.styleable.MaterialEditText_inputType, 2))
                 setMaxLines(a.getInt(R.styleable.MaterialEditText_maxLines, -1))
                 setIsHintFloating(a.getBoolean(R.styleable.MaterialEditText_isHintFloating, true))
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -246,4 +253,44 @@ class MaterialEditText : TextInputLayout {
         return textInputEditText
     }
 
+    fun setHintFontFamily(fontFamily: Int) {
+        fontFamily.let { ResourcesCompat.getFont(context, it) }.also { typeface = it }
+    }
+
+    fun setBoxWidth(size: Int) {
+        boxStrokeWidth = size
+        boxStrokeWidthFocused = size
+    }
+
+    fun setTextFontFamily(fontFamily: Int) {
+        textInputEditText.typeface = fontFamily?.let { ResourcesCompat.getFont(context, it) }
+    }
+
+    fun setTextColor(textColorCode: String) {
+        textInputEditText.setTextColor(Color.parseColor(textColorCode))
+    }
+
+    fun setTextSize(fontSizeSp: Int) {
+        fontSizeSp.spToPx().let { textInputEditText.textSize = it.toFloat() }
+    }
+
+    private fun setHintAsteriskColor(color: Int) {
+        val len = hintForColor.length
+        val sb = SpannableStringBuilder(hintForColor)
+        val asteriskColor = ForegroundColorSpan(color)
+        if (len != 0) {
+            sb.setSpan(asteriskColor, len - 1, len, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+            super.setHint(sb)
+        }
+    }
+
+    override fun setHint(hint: CharSequence?) {
+        if (isRequired) {
+            hintForColor = "$hint *"
+            setHintAsteriskColor(Color.RED)
+        } else {
+            hintForColor = hint?.toString() ?: ""
+            super.setHint(hint)
+        }
+    }
 }

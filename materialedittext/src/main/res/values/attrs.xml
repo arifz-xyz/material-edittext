@@ -17,5 +17,9 @@
         </attr>
         <attr name="maxLines" format="integer" />
         <attr name="isHintFloating" format="boolean" />
+        <attr name="font_Family" format="integer"/>
+        <attr name="fontSize" format="integer"/>
+        <attr name="boxWidth" format="integer"/>
+        <attr name="text_Color" format="string"/>
     </declare-styleable>
 </resources>

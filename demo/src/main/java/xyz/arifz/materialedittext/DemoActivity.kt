@@ -13,7 +13,13 @@ class DemoActivity : AppCompatActivity() {
         binding = ActivityDemoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.met.text = null
+        binding.met.text = "This is a edit text"
+        binding.met.apply {
+            setTextColor("#FF0000")
+            setTextFontFamily(R.font.poppins)
+            setHintFontFamily(R.font.poppins)
+            setBoxWidth(1)
+        }
 
         binding.btn.setOnClickListener {
             val txt = binding.met.text?.toString()
