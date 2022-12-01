@@ -22,12 +22,16 @@ class DemoActivity : AppCompatActivity() {
         }
 
         binding.btn.setOnClickListener {
+            binding.met.setIsRequired(true)
             val txt = binding.met.text?.toString()
             if (txt.isNullOrEmpty())
                 binding.met.error = "Empty fields"
             else
                 Toast.makeText(this, txt, Toast.LENGTH_SHORT).show()
         }
+     /*   binding.btn2.setOnClickListener {
+            binding.met.setIsRequired(false)
+        }*/
     }
-    
+
 }

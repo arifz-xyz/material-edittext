@@ -286,6 +286,12 @@ class MaterialEditText : TextInputLayout {
         }
     }
 
+    fun setIsRequired(isReq:Boolean) {
+        isRequired = isReq
+        setHint(hint?.toString()?.trim()?.replace("*",""))
+    }
+
+
     override fun setHint(hint: CharSequence?) {
         if (isRequired) {
             hintForColor = "$hint *"
