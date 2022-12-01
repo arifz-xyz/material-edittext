@@ -7,6 +7,7 @@ import android.graphics.fonts.FontFamily
 import android.text.*
 import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
+import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
@@ -108,7 +109,8 @@ class MaterialEditText : TextInputLayout {
                 setEditTextType(a.getInt(R.styleable.MaterialEditText_inputType, 2))
                 setMaxLines(a.getInt(R.styleable.MaterialEditText_maxLines, -1))
                 setIsHintFloating(a.getBoolean(R.styleable.MaterialEditText_isHintFloating, true))
-
+                val textSize = a.getDimension(R.styleable.MaterialEditText_textSize, 12f)
+                setTextSize(textSize)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -270,8 +272,8 @@ class MaterialEditText : TextInputLayout {
         textInputEditText.setTextColor(Color.parseColor(textColorCode))
     }
 
-    fun setTextSize(fontSizeSp: Int) {
-        fontSizeSp.spToPx().let { textInputEditText.textSize = it.toFloat() }
+    fun setTextSize(fontSizeSp: Float) {
+        textInputEditText.textSize = fontSizeSp
     }
 
     private fun setHintAsteriskColor(color: Int) {
