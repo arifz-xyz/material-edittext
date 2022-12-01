@@ -1,4 +1,5 @@
-# Custom Material EditText
+# Custom Material EditText [![](https://jitpack.io/v/arifz-xyz/material-edittext.svg)](https://github.com/arifz-xyz/material-edittext)
+
 An EditText inspired by Material Text Fields and packed with useful functionalities 
 
 <p>
