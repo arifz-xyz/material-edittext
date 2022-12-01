@@ -108,7 +108,8 @@ class MaterialEditText : TextInputLayout {
                 setEditTextType(a.getInt(R.styleable.MaterialEditText_inputType, 2))
                 setMaxLines(a.getInt(R.styleable.MaterialEditText_maxLines, -1))
                 setIsHintFloating(a.getBoolean(R.styleable.MaterialEditText_isHintFloating, true))
-
+                val textSize = a.getInt(R.styleable.MaterialEditText_textSize, 12)
+                setTextSize(textSize)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -271,7 +272,9 @@ class MaterialEditText : TextInputLayout {
     }
 
     fun setTextSize(fontSizeSp: Int) {
-        fontSizeSp.spToPx().let { textInputEditText.textSize = it.toFloat() }
+        fontSizeSp.spToPx().apply {
+            textInputEditText.textSize = fontSizeSp.toFloat()
+        }
     }
 
     private fun setHintAsteriskColor(color: Int) {

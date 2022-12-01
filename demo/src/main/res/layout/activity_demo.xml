@@ -16,6 +16,7 @@
         app:isEnabled="true"
         app:isRequired="true"
         app:inputType="address"
+        app:textSize="16"
         app:maxLines="3"
         app:fontFamily="@font/poppins"
         app:layout_constraintBottom_toBottomOf="parent"
