@@ -6,7 +6,7 @@ An EditText inspired by Material Text Fields and packed with useful functionalit
     <img src="screenshots/material_edit_text.gif" width="35%"/>
 </p>
 
-## Dependency Add
+## Dependency Add	[![](https://jitpack.io/v/arifz-xyz/material-edittext.svg)](https://github.com/arifz-xyz/material-edittext)
 Minimum required SDK 21
 
 ``` Gradle
@@ -19,7 +19,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.arifz-xyz:material-edittext:0.0.5-alpha04'
+	implementation 'com.github.arifz-xyz:material-edittext:$current_version'
 }
 
 ```
@@ -58,4 +58,4 @@ dependencies {
 
 ## Thanks
 
- * Special Thanks to [Md Arif](https://github.com/arifbd), [Shakibuzzaman](https://github.com/Shakibuzzaman3104) and [Tanvir](https://github.com/tanvir-media365) for their contribution.
+ * Special Thanks to [Md Arif](https://github.com/arifbd), [Shakibuzzaman](https://github.com/Shakibuzzaman3104), [Rezaul Islam Tarek](https://github.com/rezaulislamtarek) and [Tanvir](https://github.com/tanvir-media365) for their contribution.
