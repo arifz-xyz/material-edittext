@@ -6,5 +6,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "MaterialEditText"
-//include ':demo'
+include ':demo'
 include ':materialedittext'
