@@ -11,18 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:hint="This is custom edittext"
-        app:isHintFloating="true"
-        app:isEnabled="true"
-        app:isRequired="false"
-        app:inputType="address"
-        app:textSize="12sp"
-        app:maxLines="3"
         app:fontFamily="@font/poppins"
+        app:hint="This is custom edittext"
+        app:inputType="address"
+        app:isEnabled="true"
+        app:isHintFloating="true"
+        app:isRequired="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxLines="3"
+        app:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins"
+        android:text="This is a edittext"
+        app:layout_constraintBottom_toTopOf="@+id/met" />
 
     <Button
         android:id="@+id/btn"

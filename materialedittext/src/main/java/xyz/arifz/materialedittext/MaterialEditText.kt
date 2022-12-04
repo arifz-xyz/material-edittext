@@ -8,6 +8,7 @@ import android.text.*
 import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.util.Log
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
@@ -16,7 +17,6 @@ import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import xyz.arifz.materialedittext.ExtensionFunctions.dpToPx
-import xyz.arifz.materialedittext.ExtensionFunctions.spToPx
 
 class MaterialEditText : TextInputLayout {
     private lateinit var textInputEditText: TextInputEditText
@@ -272,8 +272,9 @@ class MaterialEditText : TextInputLayout {
         textInputEditText.setTextColor(Color.parseColor(textColorCode))
     }
 
-    fun setTextSize(fontSizeSp: Float) {
-        textInputEditText.textSize = fontSizeSp
+     fun setTextSize(fontSizeSp: Float) {
+        Log.d("TestSize", "setTextSize: $fontSizeSp")
+        textInputEditText.setTextSize(TypedValue.COMPLEX_UNIT_PX,fontSizeSp)
     }
 
     private fun setHintAsteriskColor(color: Int) {
@@ -288,7 +289,7 @@ class MaterialEditText : TextInputLayout {
 
     fun setIsRequired(isReq:Boolean) {
         isRequired = isReq
-        setHint(hint?.toString()?.trim()?.replace("*",""))
+        setHint(hint?.toString()?.trim()?.replace(" *",""))
     }
 
 
