@@ -92,15 +92,16 @@ class MaterialEditText : TextInputLayout {
                 if (isRequired) {
                     if (hint.isNullOrEmpty())
                         hint = ""
-                    hint += " *"
-                    hintForColor = hint
-                    setHintAsteriskColor(Color.RED)
+                    if (!hint.contains("*")) {
+                        hint += " *"
+                        hintForColor = hint
+                        setHintAsteriskColor(Color.RED)
+                    }
 
                 } else {
                     hintForColor = hint ?: ""
                     setHint(hint)
                 }
-
                 val isReadOnly = a.getBoolean(R.styleable.MaterialEditText_isReadOnly, false)
                 setReadOnly(isReadOnly)
 
