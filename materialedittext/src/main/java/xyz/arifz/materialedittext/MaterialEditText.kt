@@ -156,7 +156,7 @@ class MaterialEditText : TextInputLayout {
         setBoxCornerRadii(radius, radius, radius, radius)
     }
 
-    private fun setReadOnly(state: Boolean) {
+    fun setReadOnly(state: Boolean) {
         if (state) {
             this.isClickable = false
             this.isFocusable = false
