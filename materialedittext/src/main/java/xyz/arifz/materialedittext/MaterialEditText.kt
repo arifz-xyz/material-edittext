@@ -83,6 +83,11 @@ class MaterialEditText : TextInputLayout {
         addView(textInputEditText)
     }
 
+    fun setMaxCharacterLimit(maxLength: Int) {
+        val filter = InputFilter.LengthFilter(maxLength)
+        textInputEditText.filters = arrayOf(filter)
+    }
+
     private fun setupAttributes(context: Context, attrs: AttributeSet?) {
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.MaterialEditText)
@@ -108,7 +113,9 @@ class MaterialEditText : TextInputLayout {
                 val radius = a.getFloat(R.styleable.MaterialEditText_radius, 10f)
                 setCornerRadius(radius)
                 setEditTextType(a.getInt(R.styleable.MaterialEditText_inputType, 2))
+
                 setMaxLines(a.getInt(R.styleable.MaterialEditText_maxLines, -1))
+
                 setIsHintFloating(a.getBoolean(R.styleable.MaterialEditText_isHintFloating, true))
                 val textSize = a.getFloat(R.styleable.MaterialEditText_fontSize, 0f)
                 setTextSize(textSize)
@@ -124,6 +131,9 @@ class MaterialEditText : TextInputLayout {
             textInputEditText.hint = hint
             hint = ""
         }
+    }
+    fun setInputFilters(filters: Array<InputFilter>){
+        textInputEditText.filters = filters
     }
 
     private fun setEditTextType(type: Int) {

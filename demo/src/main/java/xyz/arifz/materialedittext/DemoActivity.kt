@@ -2,6 +2,7 @@ package xyz.arifz.materialedittext
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputFilter
 import android.widget.Toast
 import xyz.arifz.materialedittext.databinding.ActivityDemoBinding
 
@@ -12,6 +13,8 @@ class DemoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDemoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.met.setInputFilters(arrayOf(InputFilter.LengthFilter(10)))
 
         binding.met.text = "This is a edit text"
         binding.met.apply {
