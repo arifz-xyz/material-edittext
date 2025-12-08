@@ -21,5 +21,7 @@
         <attr name="fontSize" format="float" />
         <attr name="boxWidth" format="integer" />
         <attr name="text_Color" format="string" />
+        <attr name="boxStrokeColor" format="color" />
+        <attr name="hintTextColor" format="color" />
     </declare-styleable>
 </resources>

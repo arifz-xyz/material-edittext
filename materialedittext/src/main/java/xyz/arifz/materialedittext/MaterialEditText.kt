@@ -119,6 +119,19 @@ class MaterialEditText : TextInputLayout {
                 setIsHintFloating(a.getBoolean(R.styleable.MaterialEditText_isHintFloating, true))
                 val textSize = a.getFloat(R.styleable.MaterialEditText_fontSize, 0f)
                 setTextSize(textSize)
+
+                val strokeColor = a.getColor(
+                    R.styleable.MaterialEditText_boxStrokeColor,
+                    ContextCompat.getColor(context, R.color.color_blue_crayola)
+                )
+                setStrokeColor(strokeColor)
+
+                val hintTextColor = a.getColor(
+                    R.styleable.MaterialEditText_hintTextColor,
+                    ContextCompat.getColor(context, R.color.color_blue_crayola)
+                )
+                setHintTextColor(hintTextColor)
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -303,6 +316,13 @@ class MaterialEditText : TextInputLayout {
         setHint(hint?.toString()?.trim()?.replace(" *", ""))
     }
 
+    fun setStrokeColor(color: Int) {
+        boxStrokeColor = color
+    }
+
+    fun setHintTextColor(color: Int) {
+        hintTextColor = ColorStateList.valueOf(color)
+    }
 
     override fun setHint(hint: CharSequence?) {
         if (isRequired) {
